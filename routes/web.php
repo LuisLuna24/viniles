@@ -14,4 +14,8 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/componentes', function () {
+        return view('componentes.index');
+    })->name('componentes.index');
 });
