@@ -15,7 +15,7 @@
                         </x-slot>
                         <x-slot name="body">
                             <br>
-                            <x-button-routing href="{{ route('componentes.index') }}" wire:navigate.hover>Entrar</x-button-routing>
+                            <x-button-routing href="{{ route('componentes.ensambles') }}" wire:navigate.hover>Entrar</x-button-routing>
                         </x-slot>
                     </x-card>
                     <x-card>
@@ -24,7 +24,7 @@
                         </x-slot>
                         <x-slot name="body">
                             <br>
-                            <x-button-routing href="{{ route('componentes.index') }}" wire:navigate.hover>Entrar</x-button-routing>
+                            <x-button-routing href="{{ route('componentes.procesador') }}" wire:navigate.hover>Entrar</x-button-routing>
                         </x-slot> 
                     </x-card>
                     <x-card >
@@ -33,7 +33,7 @@
                         </x-slot>
                         <x-slot name="body">
                             <br>
-                            <x-button-routing href="{{ route('componentes.index') }}" wire:navigate.hover>Entrar</x-button-routing>
+                            <x-button-routing href="{{ route('componentes.targeta_madre') }}" wire:navigate.hover>Entrar</x-button-routing>
                         </x-slot>
                     </x-card>
                     <x-card>
@@ -42,7 +42,7 @@
                         </x-slot>
                         <x-slot name="body">
                             <br>
-                            <x-button-routing href="{{ route('componentes.index') }}" wire:navigate.hover>Entrar</x-button-routing>
+                            <x-button-routing href="{{ route('componentes.targeta_video') }}" wire:navigate.hover>Entrar</x-button-routing>
                         </x-slot>
                     </x-card>
                     <x-card>
@@ -51,7 +51,7 @@
                         </x-slot>
                         <x-slot name="body">
                             <br>
-                            <x-button-routing href="{{ route('componentes.index') }}" wire:navigate.hover>Entrar</x-button-routing>
+                            <x-button-routing href="{{ route('componentes.ram') }}" wire:navigate.hover>Entrar</x-button-routing>
                         </x-slot>
                     </x-card>
                     <x-card>
@@ -60,7 +60,7 @@
                         </x-slot>
                         <x-slot name="body">
                             <br>
-                            <x-button-routing href="{{ route('componentes.index') }}" wire:navigate.hover>Entrar</x-button-routing>
+                            <x-button-routing href="{{ route('componentes.ssd') }}" wire:navigate.hover>Entrar</x-button-routing>
                         </x-slot>
                     </x-card>
                     <x-card>
@@ -69,7 +69,7 @@
                         </x-slot>
                         <x-slot name="body">
                             <br>
-                            <x-button-routing href="{{ route('componentes.index') }}" wire:navigate.hover>Entrar</x-button-routing>
+                            <x-button-routing href="{{ route('componentes.hdd') }}" wire:navigate.hover>Entrar</x-button-routing>
                         </x-slot>
                     </x-card>
                     <x-card>
@@ -78,7 +78,7 @@
                         </x-slot>
                         <x-slot name="body">
                             <br>
-                            <x-button-routing href="{{ route('componentes.index') }}" wire:navigate.hover>Entrar</x-button-routing>
+                            <x-button-routing href="{{ route('componentes.fuente_poder') }}" wire:navigate.hover>Entrar</x-button-routing>
                         </x-slot>
                     </x-card>
                     <x-card>
@@ -87,7 +87,7 @@
                         </x-slot>
                         <x-slot name="body">
                             <br>
-                            <x-button-routing href="{{ route('componentes.index') }}" wire:navigate.hover>Entrar</x-button-routing>
+                            <x-button-routing href="{{ route('componentes.gabinete') }}" wire:navigate.hover>Entrar</x-button-routing>
                         </x-slot>
                     </x-card>
                 </div>
