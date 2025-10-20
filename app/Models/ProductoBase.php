@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\Sluggable\SlugOptions;
+
+class ProductoBase extends Model
+{
+    use HasFactory;
+    protected $table = 'productos_base';
+    protected $fillable = [ /* ... */];
+
+    public function categoria(): BelongsTo
+    {
+        return $this->BelongsTo(Categoria::class);
+    }
+    public function subcategoria(): BelongsTo
+    {
+        return $this->BelongsTo(Subcategoria::class);
+    }
+    public function unidad(): BelongsTo
+    {
+        return $this->BelongsTo(Unidad::class);
+    }
+    public function imagenes(): HasMany
+    {
+        return $this->HasMany(ProductoBaseImagen::class);
+    }
+
+    public function descripcioness(): HasMany
+    {
+        return $this->HasMany(ProductoBaseDescripcion::class);
+    }
+}
