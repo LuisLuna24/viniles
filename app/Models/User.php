@@ -79,7 +79,7 @@ class User extends Authenticatable
 
     public function ventas()
     {
-        return $this->hasMany(ventas::class);
+        return $this->hasMany(Venta::class);
     }
 
     public function role()
