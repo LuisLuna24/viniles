@@ -16,11 +16,9 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('slug')->unique();
             $table->text('descripcion')->nullable();
-            $table->string('sku', 100)->unique()->nullable();
-            $table->string('tipo_material', 100);
             $table->decimal('precio_costo', 10, 2)->default(0);
             $table->decimal('precio_venta_base', 10, 2)->default(0);
-            $table->integer('stock')->default(0);
+            $table->integer('stock')->default(0)->nullable();
             $table->foreignId('unidad_id')->constrained('unidades');
             $table->foreignId('categoria_id')->constrained('categorias');
             $table->foreignId('subcategoria_id')->nullable()->constrained('subcategorias');

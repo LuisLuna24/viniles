@@ -55,7 +55,6 @@
         <x-slot name="titles">
             <x-table.th>No.</x-table.th>
             <x-table.th>Nombre</x-table.th>
-            <x-table.th>Tipo</x-table.th>
             <x-table.th>Estatus</x-table.th>
             <x-table.th class="text-center">Acciones</x-table.th>
         </x-slot>
@@ -64,7 +63,6 @@
                 <x-table.tr>
                     <x-table.td>{{ ($collection->currentPage() - 1) * $collection->perPage() + $loop->iteration }}</x-table.td>
                     <x-table.td>{{ $item->nombre }}</x-table.td>
-                    <x-table.td>{{ $item->tipo }}</x-table.td>
                     <x-table.td>
                         <x-toggle-switch :id="$item->id" :checked="$item->estatus" :disabled="true"
                             wireClick="statusRegister({{ $item->id }})" />
@@ -95,16 +93,6 @@
                         <label for="nombre">Nombre:</label>
                         <x-input wire:model="nombre" id="nombre" />
                         <x-input-error for="nombre" />
-                    </div>
-                    <div class="flex flex-col gap-1 md:col-span-2">
-                        <label for="tipo">Tipo:</label>
-                        {{-- Usamos .live para que la actualización sea instantánea --}}
-                        <x-select wire:model.live="tipo" id="tipo">
-                            <option value="" disabled>Seleccione una opción</option>
-                            <option value="Tienda">Tienda</option>
-                            <option value="Auto">Auto</option>
-                        </x-select>
-                        <x-input-error for="tipo" />
                     </div>
                 </div>
                 <div class="flex justify-around mt-5">

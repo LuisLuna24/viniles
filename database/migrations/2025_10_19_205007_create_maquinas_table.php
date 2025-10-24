@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('maquinas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 100);
+            $table->string('nombre', 100)->unique();
             $table->string('marca', 100)->nullable();
             $table->string('modelo', 100)->nullable();
             $table->tinyInteger('estatus')->default(1);

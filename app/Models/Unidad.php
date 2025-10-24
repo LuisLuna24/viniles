@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Unidad extends Model
 {
     use HasFactory;
+    protected $table = 'unidades';
     protected $fillable = ['nombre', 'estatus'];
 }

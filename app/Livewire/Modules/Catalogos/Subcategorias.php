@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Modules\Catalogos;
 
-use App\Models\categorias;
-use App\Models\subcategorias as ModelsSubcategorias;
+use App\Models\Categoria;
+use App\Models\subcategoria as ModelsSubcategorias;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -19,7 +19,7 @@ class Subcategorias extends Component
     public $categorias = [];
     public function mount()
     {
-        $this->categorias = categorias::where('estatus', 1)->orderBy('nombre', 'asc')->get();
+        $this->categorias = Categoria::where('estatus', 1)->orderBy('nombre', 'asc')->get();
     }
     //*================================================================================================================================= Form
 

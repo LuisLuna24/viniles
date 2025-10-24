@@ -16,11 +16,10 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('slug')->unique();
             $table->text('descripcion')->nullable();
-            $table->string('tipo_diseno', 100);
-            $table->string('url_imagen_principal');
+            $table->string('tipo_diseno', 100)->nullable();
+            $table->string('url_imagen_principal')->nullable();
             $table->string('url_archivo_diseno')->nullable();
             $table->decimal('largo_cm', 10, 2)->nullable();
-            $table->decimal('alto_cm', 10, 2)->nullable();
             $table->tinyInteger('estatus')->default(1);
             $table->timestamps();
         });

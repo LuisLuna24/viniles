@@ -12,7 +12,19 @@ class ProductoBase extends Model
 {
     use HasFactory;
     protected $table = 'productos_base';
-    protected $fillable = [ /* ... */];
+    protected $fillable = [
+        'nombre',
+        'slug',
+        'descripcion',
+        'precio_costo',
+        'precio_venta_base',
+        'stock',
+        'unidad_id',
+        'categoria_id',
+        'subcategoria_id',
+        'vendible_sin_personalizar',
+        'estatus',
+    ];
 
     public function categoria(): BelongsTo
     {

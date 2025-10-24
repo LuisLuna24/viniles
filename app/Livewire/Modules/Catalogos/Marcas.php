@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Modules\Catalogos;
 
-use App\Models\marcas as ModelsMarcas;
+use App\Models\VehiculoMarca;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -31,7 +31,7 @@ class Marcas extends Component
         $this->resetForm();
         $this->typeForm = 2;
         $this->modal = true;
-        $data = ModelsMarcas::find($id);
+        $data = VehiculoMarca::find($id);
         $this->nombre = $data->nombre;
         $this->editId = $id;
     }
@@ -39,7 +39,7 @@ class Marcas extends Component
     private function validateData()
     {
         $this->validate([
-            'nombre' => ['required', 'max:100', Rule::unique('marcas')->ignore($this->editId),],
+            'nombre' => ['required', 'max:100', Rule::unique('vehiculo_marcas')->ignore($this->editId),],
         ]);
     }
 
@@ -50,11 +50,10 @@ class Marcas extends Component
         DB::beginTransaction();
         try {
 
-            ModelsMarcas::updateOrCreate([
+            VehiculoMarca::updateOrCreate([
                 'id' => $this->editId
             ],[
                 'nombre' => $this->nombre,
-                'tipo' => $this->tipo
             ]);
 
             switch ($this->typeForm) {
@@ -100,7 +99,7 @@ class Marcas extends Component
     public function statusRegister($id)
     {
         $this->estatusModal = true;
-        $data = ModelsMarcas::find($id);
+        $data = VehiculoMarca::find($id);
         $this->statusId = $id;
         $this->status = $data->estatus;
     }
@@ -109,7 +108,7 @@ class Marcas extends Component
     {
         DB::beginTransaction();
         try {
-            $data = ModelsMarcas::find($this->statusId);
+            $data = VehiculoMarca::find($this->statusId);
 
             $data->update([
                 'estatus' => $this->status == 1 ? 0 : 1
@@ -151,7 +150,7 @@ class Marcas extends Component
 
         DB::beginTransaction();
         try {
-            ModelsMarcas::find($this->delteId)->delete();
+            VehiculoMarca::find($this->delteId)->delete();
 
             DB::commit();
             $this->deleteModal = false;
@@ -174,7 +173,7 @@ class Marcas extends Component
 
     public function render()
     {
-        $collection = ModelsMarcas::query();
+        $collection = VehiculoMarca::query();
 
 
         if ($this->perEstatus) {

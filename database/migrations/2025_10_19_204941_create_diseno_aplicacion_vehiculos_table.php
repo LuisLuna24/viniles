@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('diseno_id')->constrained('disenos')->onDelete('cascade');
             $table->foreignId('modelo_id')->constrained('vehiculo_modelos')->onDelete('cascade');
-            $table->year('ano_inicio');
-            $table->year('ano_fin');
+            $table->year('ano_inicio')->nullable();
+            $table->year('ano_fin')->nullable();
             $table->string('parte_vehiculo', 100);
             $table->tinyInteger('estatus')->default(1);
             $table->timestamps();

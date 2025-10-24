@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('nombre', 100);
             $table->tinyInteger('estatus')->default(1);
             $table->timestamps();
+
+            $table->unique(['categoria_id', 'nombre']);
         });
     }
 

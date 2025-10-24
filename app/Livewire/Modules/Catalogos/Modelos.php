@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Modules\Catalogos;
 
-use App\Models\marcas;
-use App\Models\modelos as ModelsModelos;
+use App\Models\VehiculoModelo as ModelsModelos;
+use App\Models\VehiculoMarca;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -19,7 +19,7 @@ class Modelos extends Component
     public $marcas = [];
     public function mount()
     {
-        $this->marcas = marcas::where('estatus', 1)->orderBy('nombre', 'asc')->get();
+        $this->marcas = VehiculoMarca::where('estatus', 1)->orderBy('nombre', 'asc')->get();
     }
     //*================================================================================================================================= Form
 
@@ -47,7 +47,7 @@ class Modelos extends Component
     private function validateData()
     {
         $this->validate([
-            'nombre' => ['required', 'max:100', Rule::unique('modelos')->ignore($this->editId),],
+            'nombre' => ['required', 'max:100', Rule::unique('vehiculo_modelos')->ignore($this->editId),],
             'marca' => ['required'],
         ]);
     }

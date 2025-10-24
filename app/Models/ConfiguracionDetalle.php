@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ConfiguracionDetalle extends Model
 {
@@ -16,5 +17,8 @@ class ConfiguracionDetalle extends Model
         'unidad',
     ];
 
-    public function configuracionProduccion(): BelongsTo { /* ... */ }
+    public function configuracionProduccion(): BelongsTo
+    {
+        return $this->belongsTo(ConfiguracionProduccion::class);
+    }
 }

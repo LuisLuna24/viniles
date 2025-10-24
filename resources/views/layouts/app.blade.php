@@ -50,46 +50,6 @@
                             <span>Panel</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('admin.productos.index') }}" @class([
-                            'flex items-center rounded-sm gap-2 px-2 py-1.5 text-sm font-medium text-gray-600 underline-offset-2 hover:bg-gray-900/5 hover:text-gray-900 focus-visible:underline focus:outline-hidden dark:text-gray-300 dark:hover:bg-white/5 dark:hover:text-white',
-                            'bg-gray-100 dark:bg-white/10 font-bold' => request()->routeIs(
-                                'admin.productos.*'),
-                        ])>
-                            {!! file_get_contents(public_path('svg/barcode.svg')) !!}
-                            <span>Productos</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('admin.stickers.index') }}" @class([
-                            'flex items-center rounded-sm gap-2 px-2 py-1.5 text-sm font-medium text-gray-600 underline-offset-2 hover:bg-gray-900/5 hover:text-gray-900 focus-visible:underline focus:outline-hidden dark:text-gray-300 dark:hover:bg-white/5 dark:hover:text-white',
-                            'bg-gray-100 dark:bg-white/10 font-bold' => request()->routeIs(
-                                'admin.stickers.*'),
-                        ])>
-                            {!! file_get_contents(public_path('svg/barcode.svg')) !!}
-                            <span>Stickers</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('admin.ventas.index') }}" @class([
-                            'flex items-center rounded-sm gap-2 px-2 py-1.5 text-sm font-medium text-gray-600 underline-offset-2 hover:bg-gray-900/5 hover:text-gray-900 focus-visible:underline focus:outline-hidden dark:text-gray-300 dark:hover:bg-white/5 dark:hover:text-white',
-                            'bg-gray-100 dark:bg-white/10 font-bold' => request()->routeIs(
-                                'admin.ventas.*'),
-                        ])>
-                            {!! file_get_contents(public_path('svg/shopping-cart.svg')) !!}
-                            <span>Ventas</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('admin.configuraciones.index') }}" @class([
-                            'flex items-center rounded-sm gap-2 px-2 py-1.5 text-sm font-medium text-gray-600 underline-offset-2 hover:bg-gray-900/5 hover:text-gray-900 focus-visible:underline focus:outline-hidden dark:text-gray-300 dark:hover:bg-white/5 dark:hover:text-white',
-                            'bg-gray-100 dark:bg-white/10 font-bold' => request()->routeIs(
-                                'admin.configuraciones.*'),
-                        ])>
-                            {!! file_get_contents(public_path('svg/settings.svg')) !!}
-                            <span>Configuraciones</span>
-                        </a>
-                    </li>
                     @php
                         $catalogos = [
                             [

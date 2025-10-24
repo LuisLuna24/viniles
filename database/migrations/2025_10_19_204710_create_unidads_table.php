@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('unidades', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 100);
+            $table->string('nombre', 100)->unique();
             $table->tinyInteger('estatus')->default(1);
             $table->timestamps();
         });

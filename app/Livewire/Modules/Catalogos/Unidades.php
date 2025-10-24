@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Modules\Catalogos;
 
-use App\Models\unidades as ModelsUnidades;
+use App\Models\Unidad as ModelsUnidades;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class VentaItem extends Model
 {
@@ -25,13 +27,14 @@ class VentaItem extends Model
     }
     public function productoBase(): BelongsTo
     {
-        return $this->BelongsTo(ProductoBases::class);
+        return $this->BelongsTo(ProductoBase::class);
     }
     public function diseno(): BelongsTo
     {
         return $this->BelongsTo(Diseno::class);
     }
     public function atributos(): HasMany
-    { /* ... */
+    {
+        return $this->hasMany(VentaItemAtributo::class);
     }
 }

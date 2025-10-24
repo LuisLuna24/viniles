@@ -33,6 +33,6 @@ class DisenoPrecioColor extends Model
     }
     public function colorTerciario(): BelongsTo
     {
-        return $this->BelongsTo(related: Color::class);
+        return $this->BelongsTo(Color::class);
     }
 }
