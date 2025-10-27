@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Modelos')
+@section('title', 'Modelos de vehiculos')
 @section('content')
     @livewire('modules.catalogos.modelos')
 @endsection

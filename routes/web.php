@@ -11,17 +11,20 @@ Route::get('/nosotros', function () {
 })->name('nosotros');
 
 Route::get('/productos', function () {
-    return view('Modules.Home.products');
+    //return view('Modules.Home.products');
+    return view('poximamnete');
 })->name('productos');
 
 
 Route::get('/stickers', function () {
-    return view('Modules.Home.stickers');
-})->name('stickers');
+    return view('Modules.Home.stickers.index');
+})->name('stickers.index');
+
+Route::get('/stickers/{slug}', function ($slug) {
+    return view('Modules.Home.stickers.read', ['slug' => $slug]);
+})->name('stickers.read');
 
 
 Route::get('/contacto', function () {
     return view('poximamnete');
 })->name('contacto');
-
-

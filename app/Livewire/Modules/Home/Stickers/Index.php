@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Livewire\Modules\Home;
+namespace App\Livewire\Modules\Home\Stickers;
 
 use App\Models\Diseno;
 use App\Models\stickers;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Livewire\Attributes\On;
 
-class Sticker extends Component
+class Index extends Component
 {
-
     use WithPagination;
     public $search = '';
 
@@ -17,6 +17,12 @@ class Sticker extends Component
     public function updatingSearch()
     {
         $this->resetPage('disenos-page');
+    }
+
+    public function readDesign($slug)
+    {
+        dd($slug);
+        //return redirect()->route('stickers.read', ['slug' => $slug]);
     }
 
     public function render()
@@ -40,7 +46,7 @@ class Sticker extends Component
         }
 
         $disenos = $query->paginate(12, pageName: 'disenos-page');
-        return view('livewire.modules.home.sticker', [
+        return view('livewire.modules.home.stickers.index', [
             'disenos' => $disenos,
         ]);
     }

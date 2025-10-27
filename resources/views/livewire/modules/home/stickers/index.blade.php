@@ -32,7 +32,7 @@
 
         {{-- Grid responsive para las tarjetas --}}
         <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            @forelse ($stickers as $sticker)
+            @forelse ($disenos as $sticker)
                 {{-- Tarjeta (sin clases de animación) --}}
                 <div>
                     <x-sticker-card :sticker="$sticker" />
@@ -51,7 +51,7 @@
 
         {{-- Paginación --}}
         <div class="mt-12">
-            {{ $stickers->onEachSide(1)->links() }}
+            {{ $disenos->onEachSide(1)->links() }}
         </div>
     </div>
 </div>

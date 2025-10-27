@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Diseno extends Model
 {
     use HasFactory;
+
+    protected $table = 'disenos';
     protected $fillable = [
         'nombre',
         'slug',
@@ -17,11 +19,10 @@ class Diseno extends Model
         'url_imagen_principal',
         'url_archivo_diseno',
         'largo_cm',
-        'alto_cm',
         'estatus',
     ];
 
-    public function preciosPorColor(): HasMany
+    public function colores(): HasMany
     {
         return $this->hasMany(DisenoPrecioColor::class);
     }

@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('colores', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 100)->unique();
-            $table->string('hex_code', 7)->unique()->nullable();
+            $table->string('hex_code', 255)->unique()->nullable();
+            $table->tinyInteger('gradiante')->default(0);
             $table->tinyInteger('estatus')->default(1);
             $table->timestamps();
         });

@@ -49,10 +49,12 @@
     <x-home.nav />
 
 
-    @livewire('modules.home.sticker')
+    @yield('content')
 
     <x-home.footer />
+
     @stack('modals')
+
     @livewireScripts
 </body>
 

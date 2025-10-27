@@ -1,10 +1,10 @@
 @php
     $routes = [
-        ['name' => 'Inicio', 'route' => 'home'],
-        ['name' => 'Nosotros', 'route' => 'nosotros'],
-        ['name' => 'Productos', 'route' => 'productos'],
-        ['name' => 'Stickers', 'route' => 'stickers'],
-        ['name' => 'Contacto', 'route' => 'contacto'],
+        ['name' => 'Inicio', 'route' => 'home', 'routeIs' => 'home'],
+        ['name' => 'Nosotros', 'route' => 'nosotros', 'routeIs' => 'nosotros'],
+        ['name' => 'Productos', 'route' => 'productos', 'routeIs' => 'productos'],
+        ['name' => 'Stickers', 'route' => 'stickers.index', 'routeIs' => 'stickers.*'],
+        ['name' => 'Contacto', 'route' => 'contacto', 'routeIs' => 'contacto'],
     ];
 @endphp
 <nav x-data="{ mobileMenuIsOpen: false }" x-on:click.away="mobileMenuIsOpen = false"
@@ -32,14 +32,41 @@
 
                     // --- ESTADO ACTIVO (Si la ruta coincide) ---
                     'text-orange-600 dark:text-orange-400' => request()->routeIs(
-                        $item['route']),
-                    'after:scale-x-100' => request()->routeIs($item['route']), // La línea se muestra completa (activo)
+                        $item['routeIs']),
+                    'after:scale-x-100' => request()->routeIs($item['routeIs']), // La línea se muestra completa (activo)
                 ])
-                    aria-current="{{ request()->routeIs($item['route']) ? 'page' : 'false' }}">
+                    aria-current="{{ request()->routeIs($item['routeIs']) ? 'page' : 'false' }}">
                     {{ $item['name'] }}
                 </a>
             </li>
         @endforeach
+        @if (Auth::check() && Auth::user()->type_user_id == 1)
+            <li class="group">
+                <a href="{{ route('admin.dashboard') }}"
+                    class="relative flex items-center space-x-3 px-4 py-3 text-gray-600 dark:text-gray-400 hover:text-amber-600 dark:hover:text-amber-400 transition-colors duration-300 overflow-hidden">
+                    <!-- Efecto de fondo hover -->
+                    <div
+                        class="absolute inset-0 bg-amber-500/0 group-hover:bg-amber-500/5 rounded-xl transition-all duration-500">
+                    </div>
+
+                    <!-- Icono -->
+                    <div
+                        class="relative z-10 p-2 bg-amber-100 dark:bg-amber-900/30 rounded-lg group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-4 h-4 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                        </svg>
+                    </div>
+
+                    <!-- Texto -->
+                    <span class="relative z-10 font-medium">Panel de Control</span>
+
+                    <!-- Indicador -->
+                    <div class="relative z-10 ml-auto w-2 h-2 bg-amber-400 rounded-full group-hover:animate-ping"></div>
+                </a>
+            </li>
+        @endif
     </ul>
     <!-- Mobile Menu Button -->
     <button x-on:click="mobileMenuIsOpen = !mobileMenuIsOpen" x-bind:aria-expanded="mobileMenuIsOpen"

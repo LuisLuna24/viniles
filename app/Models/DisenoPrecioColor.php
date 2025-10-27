@@ -9,9 +9,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class DisenoPrecioColor extends Model
 {
     use HasFactory;
-    protected $table = 'disenos_precios_colores';
+    protected $table = 'diseno_precio_colors';
     protected $fillable = [
         'diseno_id',
+        'nombre_color',
         'color_primario_id',
         'color_secundario_id',
         'color_terciario_id',

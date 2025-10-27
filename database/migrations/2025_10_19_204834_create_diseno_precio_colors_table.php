@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('diseno_precio_colors', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre_color');
             $table->foreignId('diseno_id')->constrained('disenos')->onDelete('cascade');
             $table->foreignId('color_primario_id')->constrained('colores');
-            $table->foreignId('color_secundario_id')->constrained('colores');
+            $table->foreignId('color_secundario_id')->nullable()->constrained('colores');
             $table->foreignId('color_terciario_id')->nullable()->constrained('colores');
             $table->decimal('precio_adicional', 10, 2)->default(0);
             $table->string('url_imagen_ejemplo')->nullable();
