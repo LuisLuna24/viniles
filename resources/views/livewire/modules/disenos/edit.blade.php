@@ -130,6 +130,12 @@
     </div>
 
     <div x-cloak x-show="selectedTab === 'colores'" role="tabpanel" aria-label="Colores y Precios">
+        @if (session()->has('messageColor'))
+            <div class="bg-green-100 border border-green-400 text-green-700 dark:bg-green-900 dark:border-green-700 dark:text-green-300 px-4 py-3 rounded relative"
+                role="alert">
+                {{ session('messageColor') }}
+            </div>
+        @endif
         <div class="p-6 bg-white dark:bg-gray-800 shadow-md rounded-lg">
 
             <div class="flex justify-between items-center mb-4">
@@ -179,6 +185,8 @@
                                 <div
                                     class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
                                     <x-table.button-table wire:click="delete({{ $variacion->id }})" tipo="delete" />
+                                    <x-table.button-table wire:click="edit({{ $variacion->id }})" tipo="edit"
+                                        @click="showColorModal = true" />
                                 </div>
                             </div>
                         </li>
@@ -215,14 +223,6 @@
                 <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white" id="modal-title">
                     Agregar Variación de Color y Precio
                 </h3>
-
-                @if (session()->has('messageColor'))
-                    <div class="bg-green-100 border border-green-400 text-green-700 dark:bg-green-900 dark:border-green-700 dark:text-green-300 px-4 py-3 rounded relative"
-                        role="alert">
-                        {{ session('messageColor') }}
-                    </div>
-                @endif
-
                 <div>
                     <label for="nombre_color"
                         class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nombre del color</label>
@@ -297,10 +297,12 @@
                     @enderror
                 </div>
 
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Imagen de Ejemplo</label>
-                    <input type="file" wire:model="nueva_imagen_ejemplo"
-                        class="mt-1 block w-full text-sm text-gray-500 dark:text-gray-400
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Imagen de
+                            Ejemplo</label>
+                        <input type="file" wire:model="nueva_imagen_ejemplo"
+                            class="mt-1 block w-full text-sm text-gray-500 dark:text-gray-400
                         file:mr-4 file:py-2 file:px-4
                         file:rounded-full file:border-0
                         file:text-sm file:font-semibold
@@ -308,9 +310,15 @@
                         file:text-indigo-700 dark:file:text-indigo-300
                         hover:file:bg-indigo-100 dark:hover:file:bg-indigo-800
                     " />
-                    @error('nueva_imagen_ejemplo')
-                        <span class="text-red-500 dark:text-red-400 text-xs">{{ $message }}</span>
-                    @enderror
+                        @error('nueva_imagen_ejemplo')
+                            <span class="text-red-500 dark:text-red-400 text-xs">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div>
+                        @if ($editId)
+                            hola
+                        @endif
+                    </div>
                 </div>
 
                 <div class="flex justify-end gap-3 pt-4 border-t dark:border-gray-700">
@@ -318,7 +326,7 @@
                         class="rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 py-2 px-4 text-sm font-medium text-gray-700 dark:text-gray-200 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-600">
                         Cancelar
                     </button>
-                    <button type="submit" wire:loading.attr="disabled"
+                    <button type="submit" wire:loading.attr="disabled" @click="showColorModal = false"
                         class="rounded-md border border-transparent bg-green-600 dark:bg-green-500 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-green-700 dark:hover:bg-green-600">
                         Guardar Variación
                     </button>
@@ -326,7 +334,6 @@
             </form>
         </div>
     </div>
-
 
     <x-dialog-modal wire:model="deleteModal">
         <x-slot name="title">

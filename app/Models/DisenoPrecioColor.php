@@ -20,6 +20,10 @@ class DisenoPrecioColor extends Model
         'url_imagen_ejemplo',
     ];
 
+    protected $casts = [
+        'nueva_imagen_ejemplo' => 'string', // O el tipo correcto según tu BD
+    ];
+
     public function diseno(): BelongsTo
     {
         return $this->BelongsTo(Diseno::class);

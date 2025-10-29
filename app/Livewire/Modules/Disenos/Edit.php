@@ -93,11 +93,11 @@ class Edit extends Component
     {
         return [
             'nombre_color' => 'required',
-            'color_primario_id' => 'required|integer|exists:colores,id',
-            'color_secundario_id' => 'nullable|integer|exists:colores,id',
-            'color_terciario_id' => 'nullable|integer|exists:colores,id',
-            'precio_adicional' => 'required|integer|min:0',
-            'nueva_imagen_ejemplo' => 'nullable|image|max:2048',
+            'color_primario_id' => 'required|exists:colores,id',
+            'color_secundario_id' => 'nullable|exists:colores,id',
+            'color_terciario_id' => 'nullable|exists:colores,id',
+            'precio_adicional' => 'required|min:0',
+            'nueva_imagen_ejemplo' => 'nullable|max:2048',
         ];
     }
 
@@ -110,9 +110,7 @@ class Edit extends Component
 
         // Manejar la subida de la nueva imagen principal
         if ($this->nueva_imagen_principal) {
-            if ($this->largo_imagen_principal) {
-                Storage::disk('public')->delete($this->diseno->url_imagen_principal);
-            }
+            Storage::disk('public')->delete($this->diseno->url_imagen_principal);
 
             $validatedData['url_imagen_principal'] = $this->nueva_imagen_principal->store('disenos', 'public');
         }
@@ -133,28 +131,76 @@ class Edit extends Component
     {
         $validatedData = $this->validate($this->rulesColor());
 
-        // Manejar la subida de la imagen de ejemplo
-        if ($this->nueva_imagen_ejemplo) {
-            $validatedData['url_imagen_ejemplo'] = $this->nueva_imagen_ejemplo->store('disenos', 'public');
+        // Si estamos en modo edición
+        if ($this->editId) {
+            $color = DisenoPrecioColor::find($this->editId);
+
+            // Manejar la subida de la nueva imagen si se proporciona
+            if ($this->nueva_imagen_ejemplo instanceof \Illuminate\Http\UploadedFile) {
+                // Eliminar imagen anterior si existe
+                if ($color->url_imagen_ejemplo && Storage::disk('public')->exists($color->url_imagen_ejemplo)) {
+                    Storage::disk('public')->delete($color->url_imagen_ejemplo);
+                }
+                $validatedData['url_imagen_ejemplo'] = $this->nueva_imagen_ejemplo->store('disenos', 'public');
+            } else {
+                // Mantener la imagen actual si no se subió una nueva
+                $validatedData['url_imagen_ejemplo'] = $color->url_imagen_ejemplo;
+            }
+
+            // Quitar la propiedad que no es de la BD
+            unset($validatedData['nueva_imagen_ejemplo']);
+
+            // Actualizar el registro
+            $color->update($validatedData);
+
+            session()->flash('messageColor', 'Variación de color actualizada.');
+        } else {
+            // Modo creación - crear nuevo registro
+            if ($this->nueva_imagen_ejemplo instanceof \Illuminate\Http\UploadedFile) {
+                $validatedData['url_imagen_ejemplo'] = $this->nueva_imagen_ejemplo->store('disenos', 'public');
+            }
+
+            // Quitar la propiedad que no es de la BD
+            unset($validatedData['nueva_imagen_ejemplo']);
+
+            // Crear el registro asociado al diseño
+            $this->diseno->colores()->create($validatedData);
+
+            session()->flash('messageColor', 'Variación de color guardada.');
         }
 
-        // Quitar la propiedad que no es de la BD
-        unset($validatedData['nueva_imagen_ejemplo']);
-
-        // Crear el registro asociado al diseño
-        $this->diseno->colores()->create($validatedData);
-
-        session()->flash('messageColor', 'Variación de color guardada.');
-
-        // Resetear los campos del modal y refrescar la lista
-        $this->reset('color_primario_id', 'color_secundario_id', 'color_terciario_id', 'precio_adicional', 'nueva_imagen_ejemplo');
-
-        // Refrescar la relación de colores
+        $this->resetFormColor();
         $this->diseno->load('colores');
-
-        // Avisar a Alpine que cierre el modal
-        $this->dispatch('colorSaved');
+        $this->dispatch('showColorModal,false');
     }
+
+
+
+    //*================================================================================================================================= Editar
+
+    public $editId;
+    public function edit($id)
+    {
+        $this->resetFormColor();
+        $this->editId = $id;
+        $data = DisenoPrecioColor::find($id);
+
+        $this->nombre_color = $data->nombre_color;
+        $this->color_primario_id = $data->color_primario_id;
+        $this->color_secundario_id = $data->color_secundario_id;
+        $this->color_terciario_id = $data->color_terciario_id;
+        $this->precio_adicional = $data->precio_adicional;
+        $this->nueva_imagen_ejemplo = $data->url_imagen_ejemplo; // Asignar la imagen actual
+
+        // Emitir evento para Alpine.js si es necesario
+        $this->dispatch('editModeEnabled', image: $data->url_imagen_ejemplo ? asset('storage/' . $data->url_imagen_ejemplo) : null);
+    }
+
+    public function resetFormColor()
+    {
+        $this->reset('nombre_color', 'color_primario_id', 'color_secundario_id', 'color_terciario_id', 'precio_adicional', 'nueva_imagen_ejemplo', 'editId');
+    }
+
 
     //*================================================================================================================================= Eliminar
 
