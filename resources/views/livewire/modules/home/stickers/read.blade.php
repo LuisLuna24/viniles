@@ -93,42 +93,6 @@
                     @endforeach
                 </div>
             </div>
-
-            <!-- Botón de acción
-            <div class="pt-4">
-                <button
-                    class="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold py-4 px-8 rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-amber-500/25 text-lg">
-                    <span class="flex items-center justify-center space-x-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                        </svg>
-                        <span>Agregar al Carrito</span>
-                    </span>
-                </button>
-            </div>
-
-            <div class="flex items-center justify-center space-x-6 text-sm text-gray-500 dark:text-gray-400 pt-4">
-                <div class="flex items-center space-x-2">
-                    <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
-                    <span>Envío gratis</span>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
-                    <span>Garantía</span>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
-                    <span>Devoluciones</span>
-                </div>
-            </div>
-            -->
         </div>
     </div>
 </div>

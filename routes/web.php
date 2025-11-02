@@ -7,13 +7,17 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/nosotros', function () {
-    return view('poximamnete');
+    return view('nosotros');
 })->name('nosotros');
 
 Route::get('/productos', function () {
     //return view('Modules.Home.products');
-    return view('poximamnete');
-})->name('productos');
+    return view('Modules.Home.Productos.index');
+})->name('productos.index');
+
+Route::get('/productos/{slug}', function ($slug) {
+    return view('Modules.Home.Productos.read', ['slug' => $slug]);
+})->name('productos.read');
 
 
 Route::get('/stickers', function () {
@@ -26,5 +30,5 @@ Route::get('/stickers/{slug}', function ($slug) {
 
 
 Route::get('/contacto', function () {
-    return view('poximamnete');
+    return view('contacto');
 })->name('contacto');

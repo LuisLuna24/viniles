@@ -21,40 +21,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-
-
-
-    <!-- Styles -->
-    @livewireStyles
-    <style>
-        /* Estilos base para las animaciones iniciales */
-        .text-initial-hidden {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        @media (max-width: 1023px) {
-            .hero-mobile-bg {
-                background-image: url('{{ asset('img/duck.webp') }}');
-                /* Opcional: añade aquí estas propiedades si quieres que SÓLO se apliquen en móvil */
-                background-size: cover;
-                background-position: 70% center;
-            }
-        }
-    </style>
-
 </head>
 
 <body class="bg-neutral-50 dark:bg-neutral-900 dark:text-neutral-50 text-neutral-900">
     <x-home.nav />
 
 
-    @yield('content')
+    <main>
+        @yield('content')
+    </main>
+
 
     <x-home.footer />
-
     @stack('modals')
-
     @livewireScripts
 </body>
 

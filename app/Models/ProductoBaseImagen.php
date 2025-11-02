@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class ProductoBaseImagen extends Model
 {
     use HasFactory;
-    protected $table = 'productos_base_imagenes';
+    protected $table = 'producto_base_imagens';
     protected $fillable = ['producto_base_id', 'url_imagen', 'orden'];
 
     public function productoBase(): BelongsTo

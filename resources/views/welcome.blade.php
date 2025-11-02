@@ -41,6 +41,44 @@
                 background-position: 70% center;
             }
         }
+
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fade-in-up 0.8s ease-out forwards;
+        }
+
+        /* Efectos de partículas para el primer botón */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-4px);
+            }
+        }
+
+        .group:hover .animate-float {
+            animation: float 2s ease-in-out infinite;
+        }
+
+        /* Mejora el efecto de brillo */
+        .group:hover .shadow-amber-500\/50 {
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.5);
+        }
     </style>
 
 </head>
@@ -72,13 +110,83 @@
                 STICKERS & DESIGN - Dale un toque único a tu máquina.
             </p>
 
-            <a id="get-started-btn" href="{{ route('productos') }}"
-                class="w-max px-10 py-4 text-lg bg-amber-400 text-gray-900 font-bold transition duration-300
-                   hover:shadow-[0_0_15px_rgba(163,230,53,0.7)] hover:scale-[1.03] transform scale-90 opacity-0 relative overflow-hidden group">
-                VER PRODUCTOS
-                <span
-                    class="absolute top-0 left-0 w-full h-full bg-white opacity-0 group-hover:opacity-10 transition duration-300"></span>
-            </a>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="{{ route('productos.index') }}"
+                    class="group relative px-12 py-5 text-lg font-bold text-gray-900 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400
+               rounded-2xl shadow-2xl shadow-amber-500/30 transform scale-90 opacity-0 transition-all duration-700
+               hover:scale-105 hover:shadow-amber-500/50 hover:from-amber-300 hover:to-amber-400 hover:text-white
+               focus:outline-none focus:ring-4 focus:ring-amber-500/40 focus:ring-offset-2 focus:ring-offset-gray-900
+               overflow-hidden animate-fade-in-up">
+
+                    <!-- Efecto de brillo animado -->
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent
+                    -translate-x-full group-hover:translate-x-full transition-transform duration-1000">
+                    </div>
+
+                    <!-- Borde animado -->
+                    <div
+                        class="absolute inset-0 rounded-2xl bg-gradient-to-r from-amber-300 to-yellow-300 p-[2px]
+                    opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="w-full h-full bg-gray-900 rounded-2xl"></div>
+                    </div>
+
+                    <!-- Contenido del botón -->
+                    <div class="relative flex items-center justify-center gap-3">
+                        <span>VER PRODUCTOS</span>
+                        <svg class="w-5 h-5 transform transition-transform duration-300 group-hover:translate-x-1"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </div>
+
+                    <!-- Partículas decorativas -->
+                    <div
+                        class="absolute -top-1 -left-1 w-3 h-3 bg-yellow-300 rounded-full opacity-0
+                    group-hover:opacity-100 group-hover:animate-ping">
+                    </div>
+                    <div
+                        class="absolute -bottom-1 -right-1 w-2 h-2 bg-amber-300 rounded-full opacity-0
+                    group-hover:opacity-100 group-hover:animate-ping delay-300">
+                    </div>
+                </a>
+
+                <a href="{{ route('stickers.index') }}"
+                    class="group relative px-12 py-5 text-lg font-bold text-white bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800
+               border-2 border-amber-500/50 rounded-2xl shadow-2xl shadow-amber-500/20 transform scale-90 opacity-0
+               transition-all duration-700 hover:scale-105 hover:shadow-amber-500/40 hover:border-amber-400
+               hover:from-gray-700 hover:to-gray-800 focus:outline-none focus:ring-4 focus:ring-amber-500/40
+               focus:ring-offset-2 focus:ring-offset-gray-900 overflow-hidden animate-fade-in-up delay-200">
+
+                    <!-- Efecto de brillo dorado -->
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-amber-500/0 via-amber-500/10 to-amber-500/0
+                    -translate-x-full group-hover:translate-x-full transition-transform duration-1000">
+                    </div>
+
+                    <!-- Contenido del botón -->
+                    <div class="relative flex items-center justify-center gap-3">
+                        <svg class="w-5 h-5 text-amber-400 transform transition-transform duration-300 group-hover:scale-110"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                        <span>VER STICKERS</span>
+                    </div>
+
+                    <!-- Efecto de chispas -->
+                    <div
+                        class="absolute top-2 right-2 w-1 h-1 bg-amber-400 rounded-full opacity-0
+                    group-hover:opacity-100 group-hover:animate-bounce">
+                    </div>
+                    <div
+                        class="absolute bottom-2 left-2 w-1 h-1 bg-amber-400 rounded-full opacity-0
+                    group-hover:opacity-100 group-hover:animate-bounce delay-150">
+                    </div>
+                </a>
+            </div>
         </div>
 
         <div class="hidden lg:flex w-2/5 relative">
@@ -130,7 +238,7 @@
                         {!! file_get_contents(public_path($item['svg'])) !!}
                     </div>
 
-                    <h3 class="text-2xl font-bold mb-3 text-white">
+                    <h3 class="text-2xl font-bold mb-3 ">
                         {{ $item['name'] }}
                     </h3>
                     <p class="text-gray-400 text-lg">
@@ -167,9 +275,14 @@
             <div id="cta-buttons"
                 class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 opacity-0 transform translate-y-5">
 
-                <a href="{{ route('productos') }}"
+                <a href="{{ route('productos.index') }}"
                     class="w-full sm:w-auto px-10 py-4 text-lg bg-amber-400 text-gray-900 font-bold rounded-md transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-[0_0_15px_rgba(251,191,36,0.6)]">
                     VER PRODUCTOS
+                </a>
+
+                <a href="{{ route('stickers.index') }}"
+                    class="w-full sm:w-auto px-10 py-4 text-lg bg-amber-400 text-gray-900 font-bold rounded-md transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-[0_0_15px_rgba(251,191,36,0.6)]">
+                    VER STICKERS
                 </a>
 
                 <a href="#"

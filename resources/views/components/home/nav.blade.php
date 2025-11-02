@@ -2,7 +2,7 @@
     $routes = [
         ['name' => 'Inicio', 'route' => 'home', 'routeIs' => 'home'],
         ['name' => 'Nosotros', 'route' => 'nosotros', 'routeIs' => 'nosotros'],
-        ['name' => 'Productos', 'route' => 'productos', 'routeIs' => 'productos'],
+        ['name' => 'Productos', 'route' => 'productos.index', 'routeIs' => 'productos.*'],
         ['name' => 'Stickers', 'route' => 'stickers.index', 'routeIs' => 'stickers.*'],
         ['name' => 'Contacto', 'route' => 'contacto', 'routeIs' => 'contacto'],
     ];

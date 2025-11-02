@@ -43,7 +43,7 @@ class ProductoBase extends Model
         return $this->HasMany(ProductoBaseImagen::class);
     }
 
-    public function descripcioness(): HasMany
+    public function descripciones(): HasMany
     {
         return $this->HasMany(ProductoBaseDescripcion::class);
     }

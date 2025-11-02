@@ -49,6 +49,19 @@ Route::get('/diseños/edit/{id}', function ($id) {
 })->name('disenos.edit');
 
 
+Route::get('/productos', function () {
+    return view('Modules.Productos.index');
+})->name('productos.index');
+
+Route::get('/productos/create', function () {
+    return view('Modules.Productos.create');
+})->name('productos.create');
+
+Route::get('/productos/edit/{id}', function ($id) {
+    return view('Modules.Productos.edit',['id' => $id]);
+})->name('productos.edit');
+
+
 
 Route::get('/ventas', function () {
     return view('dashboard');

@@ -4,10 +4,12 @@ namespace App\Livewire\Modules\Home\Stickers;
 
 use App\Models\Diseno;
 use App\Models\stickers;
+use Livewire\Attributes\Lazy;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\On;
 
+#[Lazy]
 class Index extends Component
 {
     use WithPagination;
@@ -21,8 +23,13 @@ class Index extends Component
 
     public function readDesign($slug)
     {
-        dd($slug);
-        //return redirect()->route('stickers.read', ['slug' => $slug]);
+        //dd($slug);
+        return redirect()->route('stickers.read', ['slug' => $slug]);
+    }
+
+    public function placeholder()
+    {
+        return view('livewire.placeholders.skeleton');
     }
 
     public function render()
@@ -36,12 +43,7 @@ class Index extends Component
 
         if ($this->search) {
             $query->where(function ($q) {
-                // Búsqueda existente
-                $q->where('nombre', 'like', '%' . $this->search . '%')
-                    ->orWhere('tipo_diseno', 'like', '%Sticker%')
-                    ->orWhereHas('colores.colorPrimario', function ($colorQuery) {
-                        $colorQuery->where('nombre', 'like', '%' . $this->search . '%');
-                    });
+                $q->where('nombre', 'like', '%' . $this->search . '%');
             });
         }
 

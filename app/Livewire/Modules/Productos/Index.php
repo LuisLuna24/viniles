@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Livewire\Modules\Disenos;
+namespace App\Livewire\Modules\Productos;
 
-use App\Models\Diseno;
+use App\Livewire\Modules\Home\Products;
+use App\Models\ProductoBase;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -11,18 +12,17 @@ use Livewire\WithPagination;
 
 class Index extends Component
 {
-
     use WithPagination;
     public $perEstatus, $perPage = '10', $search;
     //*================================================================================================================================= Forms
 
     public function create()
     {
-        return redirect()->route('admin.disenos.create');
+        return redirect()->route('admin.productos.create');
     }
     public function edit($id)
     {
-        return redirect()->route('admin.disenos.edit', ['id' => $id]);
+        return redirect()->route('admin.productos.edit', ['id' => $id]);
     }
 
     //*================================================================================================================================= Estatus
@@ -33,7 +33,7 @@ class Index extends Component
     public function statusRegister($id)
     {
         $this->estatusModal = true;
-        $data = Diseno::find($id);
+        $data = ProductoBase::find($id);
         $this->statusId = $id;
         $this->status = $data->estatus;
     }
@@ -42,7 +42,7 @@ class Index extends Component
     {
         DB::beginTransaction();
         try {
-            $data = Diseno::find($this->statusId);
+            $data = ProductoBase::find($this->statusId);
 
             $data->update([
                 'estatus' => $this->status == 1 ? 0 : 1
@@ -84,7 +84,7 @@ class Index extends Component
 
         DB::beginTransaction();
         try {
-            Diseno::find($this->delteId)->delete();
+            ProductoBase::find($this->delteId)->delete();
 
             DB::commit();
             $this->deleteModal = false;
@@ -107,7 +107,7 @@ class Index extends Component
 
     public function render()
     {
-        $collection = Diseno::query();
+        $collection = ProductoBase::query();
 
         if ($this->perEstatus) {
             switch ($this->perEstatus) {
@@ -122,13 +122,10 @@ class Index extends Component
 
         $collection = $collection->where(function ($query) {
             $query->where('nombre', 'like', '%' . $this->search . '%')
-            ->orWhere('id', 'like', '%' . $this->search . '%');
+                ->orWhere('id', 'like', '%' . $this->search . '%');
         });
 
         $collection = $collection->orderBy('nombre', 'asc')->paginate($this->perPage, pageName: "collection-page");
-
-        return view('livewire.modules.disenos.index',[
-            'collection'=> $collection,
-        ]);
+        return view('livewire.modules.productos.index', ['collection' => $collection]);
     }
 }
